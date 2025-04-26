@@ -2,25 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { useRef } from 'react';
-
-// Custom hook to replace useInView since it might be causing issues
-const useSimpleInView = () => {
-  // For simplicity, we'll just return true
-  return true;
-};
 
 export default function AudioTranslation() {
   // Create refs for scroll animations
   const titleRef = useRef(null);
   const howItWorksRef = useRef(null);
   const uploadSectionRef = useRef(null);
-  
-  // Use simplified in-view check
-  const isTitleVisible = useSimpleInView();
-  const isHowItWorksVisible = useSimpleInView();
-  const isUploadSectionVisible = useSimpleInView();
 
   return (
     <div className="min-h-screen bg-white">
@@ -29,10 +17,7 @@ export default function AudioTranslation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
-              <motion.div
-                whileHover={{ rotate: 20 }}
-                className="bg-[#A78BFA] p-2 rounded-xl"
-              >
+              <div className="bg-[#A78BFA] p-2 rounded-xl hover:rotate-12 transition-transform">
                 <Image 
                   src="/images/hand-icon.svg"
                   alt="Hand Icon" 
@@ -40,7 +25,7 @@ export default function AudioTranslation() {
                   height={32}
                   className="brightness-0 invert"
                 />
-              </motion.div>
+              </div>
               <span className="ml-2 text-xl font-bold text-gray-900">Signapse</span>
             </Link>
           </div>
@@ -51,28 +36,16 @@ export default function AudioTranslation() {
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* How it Works Section */}
-          <motion.section 
+          <section 
             ref={howItWorksRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ 
-              opacity: isHowItWorksVisible ? 1 : 0, 
-              y: isHowItWorksVisible ? 0 : 50 
-            }}
-            transition={{ duration: 0.7 }}
-            className="mb-16"
+            className="mb-16 opacity-100 transform-none transition-all duration-700"
           >
-            <motion.h1 
+            <h1 
               ref={titleRef}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ 
-                opacity: isTitleVisible ? 1 : 0, 
-                y: isTitleVisible ? 0 : 30 
-              }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl font-bold text-gray-900 mb-8"
+              className="text-4xl font-bold text-gray-900 mb-8 opacity-100 transform-none transition-all duration-500"
             >
               Audio Translation
-            </motion.h1>
+            </h1>
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">How it Works</h2>
               <div className="space-y-6">
@@ -105,18 +78,12 @@ export default function AudioTranslation() {
                 </div>
               </div>
             </div>
-          </motion.section>
+          </section>
 
           {/* Audio Upload Section */}
-          <motion.section 
+          <section 
             ref={uploadSectionRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ 
-              opacity: isUploadSectionVisible ? 1 : 0, 
-              y: isUploadSectionVisible ? 0 : 50 
-            }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8"
+            className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 opacity-100 transform-none transition-all duration-700"
           >
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Upload Your Audio</h2>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-12">
@@ -136,7 +103,7 @@ export default function AudioTranslation() {
                 </button>
               </div>
             </div>
-          </motion.section>
+          </section>
         </div>
       </main>
     </div>
