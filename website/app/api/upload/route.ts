@@ -3,14 +3,8 @@ import { writeFile } from 'fs/promises';
 import { join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '50mb',
-    },
-    runtime: 'edge',
-  },
-};
+// Updated configuration for Next.js Edge runtime
+export const runtime = 'edge';
 
 const ALLOWED_FILE_TYPES = {
   video: ['video/mp4', 'video/quicktime'],
